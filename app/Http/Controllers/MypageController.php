@@ -11,11 +11,14 @@ class MypageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $CurrentUserId = Auth::user()->id;
-        $articles = Article::where('user_id',$CurrentUserId)->orderBy('created_at', 'desc')->get();
-        return view('article.index', ['articles' => $articles]); 
+
+        $sort_type = $request -> sort_type ?? 'newest';
+        $articles = Article::where('user_id',$CurrentUserId)->sorting($sort_type)->get();
+        // $articles = Article::where('user_id',$CurrentUserId)->orderBy('created_at', 'desc')->get();
+        return view('mypage.index', ['articles' => $articles]); 
     }
 
     /**

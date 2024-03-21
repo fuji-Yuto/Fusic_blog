@@ -4,16 +4,16 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\GoodController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () { 
-    Route::get('article/sort',[ArticleController::class,'sort']) -> name('article.sort'); 
-    Route::resource('article',ArticleController::class);
-    
+Route::middleware('auth')->group(function () {
 
+    Route::resource('article',ArticleController::class);
     Route::resource('mypage',MypageController::class);
 });
 
