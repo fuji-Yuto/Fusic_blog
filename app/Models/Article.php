@@ -15,20 +15,20 @@ class Article extends Model
         'updated_at',
     ];
 
-    public static function IndexSortingHandle($sort_type){
-        $articles = [];
+
+    public function scopeSorting($query,$sort_type){
+        
         switch($sort_type){
             case 'newest':
-                $articles = self::orderBy('updated_at','desc')->get();
-                break;
+                return $query -> orderBy('updated_at','desc');
             case 'oldest':
-                $articles = self::orderBy('updated_at','asc')->get();
-                break; 
+                return $query -> orderBy('updated_at','asc'); 
             case 'most_viewed':
-                $articles = self::orderBy('view','desc')->get();
-                break;
+                return $query -> orderBy('view','desc');
+            default :
+                $query;
         }
-        return $articles;
+
     }
 
     public function user()

@@ -15,14 +15,10 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {   
-        // ddd($request->sort_type);
-        if(is_null($request->sort_type)){
-            $articles = Article::orderBy('created_at', 'desc')->get();
-        }else{
-            $articles = Article::IndexSortingHandle($request->sort_type);
-        }
-
         
+        $sort_type = $request -> sort_type ?? 'newest';
+        $articles = Article::sorting($sort_type)->get();
+    
         return view('article.index', ['articles' => $articles]);
     }
 
