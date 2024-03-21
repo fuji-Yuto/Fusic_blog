@@ -12,9 +12,11 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-
     Route::resource('article',ArticleController::class);
     Route::resource('mypage',MypageController::class);
+
+    Route::post('article/{article}/good',[GoodController::Class,'store'])->name('good');
+    Route::post('article/{article}/not_good',[GoodController::Class,'destroy'])->name('not_good');
 });
 
 

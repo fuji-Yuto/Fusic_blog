@@ -25,8 +25,10 @@ class Article extends Model
                 return $query -> orderBy('updated_at','asc'); 
             case 'most_viewed':
                 return $query -> orderBy('view','desc');
+            case 'best':
+                return $query -> withCount('good_users')->orderBy('good_users_count','desc');
             default :
-                $query;
+                return $query;
         }
 
     }
@@ -34,6 +36,11 @@ class Article extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function good_users(){
+        return $this->belongsToMany(User::class);
+
     }
 
 

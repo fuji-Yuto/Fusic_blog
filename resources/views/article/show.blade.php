@@ -2,16 +2,16 @@
 
     <div class="bg-white w-3/5 mb-5 mt-3 text-center">
         <p class="text-xl">
-            {{$article -> id }}
+            {{$article->id}}
         </p>
         <p >
-            {{$article -> content}}
+            {{$article->content}}
         </p>
         <p>
-            view:{{$article -> view}}
+            view:{{$article->view}}
         </p>
         <p class="text-sm">
-          作成日:{{ $article -> created_at }}
+            作成日:{{$article->created_at}}
         </p>
     </div>
 
